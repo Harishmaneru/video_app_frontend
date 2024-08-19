@@ -68,7 +68,7 @@ const VideoRecorder = () => {
     const formData = new FormData();
     formData.append('video', blob, 'recordedVideo.webm');
 
-    fetch('http://34.239.247.14:3000/upload', {
+    fetch('https://34.239.247.14:3000/upload', {
       method: 'POST',
       body: formData
       
