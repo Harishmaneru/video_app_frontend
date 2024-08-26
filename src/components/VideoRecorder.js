@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CameraVideoFill } from 'react-bootstrap-icons';
+import { BriefcaseFill } from 'react-bootstrap-icons';
 import '../App.css';
 
 const VideoRecorder = () => {
@@ -143,18 +144,18 @@ const VideoRecorder = () => {
     e.preventDefault();
     if (validateForm() && recordedVideos.question1 && recordedVideos.question2) {
       const submitFormData = new FormData();
-      
-      // Append form data
+
+
       Object.keys(formData).forEach(key => {
         submitFormData.append(key, formData[key]);
       });
 
-      // Append video blobs
+
       submitFormData.append('video1', recordedVideos.question1, 'video1.webm');
       submitFormData.append('video2', recordedVideos.question2, 'video2.webm');
 
-      // Send data to server
-      fetch('http://localhost:3000/upload', {
+
+      fetch('https://videoresponse.onepgr.com:3000/upload', {
         method: 'POST',
         body: submitFormData,
       })
@@ -167,6 +168,34 @@ const VideoRecorder = () => {
         .then(data => {
           console.log('Upload successful:', data);
           alert('Application submitted successfully!');
+          setFormData({
+            fullName: '',
+            email: '',
+            phone: '',
+            jobTitle: '',
+            company: '',
+            location: '',
+            linkedinUrl: '',
+            hearAbout: '',
+            interest: '',
+            skills: '',
+            challenge: '',
+            salary: '',
+            relocate: '',
+            jobReqUrl: '',
+          });
+          setRecordedVideos({
+            question1: null,
+            question2: null
+          });
+          setRecordingSuccess({
+            question1: false,
+            question2: false
+          });
+          setFormErrors({});
+          if (videoRef1.current) videoRef1.current.src = '';
+          if (videoRef2.current) videoRef2.current.src = '';
+          window.scrollTo(0, 0);
         })
         .catch(error => {
           console.error('Error submitting application:', error);
@@ -182,9 +211,41 @@ const VideoRecorder = () => {
       <div className="row justify-content-center">
         <div className="col-lg-8">
           <div className="card shadow-lg border-0 rounded-lg">
-            <div className="card-body p-5">       
+            <div className="card-body p-5">
               <form onSubmit={handleSubmit}>
-              <div className="row mb-3">
+                <div className="p-4">
+                  <div className="d-flex align-items-center">
+                    <BriefcaseFill size={40} className="me-3 text-primary" />
+                    <div>
+                      <h2 className="mb-0">Job Application</h2>
+                      <p className="mb-0">
+                        Please complete the form below to apply for a position with us.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-4">
+
+                  <p className="text-muted mb-2">
+                    <strong>Please enter the URL of the job requisition you're applying for. Your responses below will be associated with this job posting.</strong>
+                  </p>
+                  <div className="form-floating">
+                    <input
+                      className={`form-control ${formErrors.jobReqUrl ? 'is-invalid' : ''}`}
+                      id="jobReqUrl"
+                      name="jobReqUrl"
+                      type="url"
+                      placeholder="https://example.com/job-requisition"
+                      value={formData.jobReqUrl}
+                      onChange={handleInputChange}
+                      required
+                    />
+                    <label htmlFor="jobReqUrl">Enter Job Requisition URL</label>
+                    {formErrors.jobReqUrl && <div className="invalid-feedback">{formErrors.jobReqUrl}</div>}
+                  </div>
+
+                </div>
+                <div className="row mb-3">
                   <div className="col-md-6">
                     <div className="form-floating mb-3 mb-md-0">
                       <input className={`form-control ${formErrors.fullName ? 'is-invalid' : ''}`} id="fullName" name="fullName" type="text" placeholder="Enter your full name" value={formData.fullName} onChange={handleInputChange} required />
@@ -243,17 +304,17 @@ const VideoRecorder = () => {
                   {formErrors.hearAbout && <div className="invalid-feedback">{formErrors.hearAbout}</div>}
                 </div>
                 <div className="form-floating mb-3">
-                  <textarea className={`form-control ${formErrors.interest ? 'is-invalid' : ''}`} id="interest" name="interest" placeholder="Why are you interested in this role?" style={{height: '100px'}} value={formData.interest} onChange={handleInputChange} required></textarea>
+                  <textarea className={`form-control ${formErrors.interest ? 'is-invalid' : ''}`} id="interest" name="interest" placeholder="Why are you interested in this role?" style={{ height: '100px' }} value={formData.interest} onChange={handleInputChange} required></textarea>
                   <label htmlFor="interest">Why are you interested in this role?</label>
                   {formErrors.interest && <div className="invalid-feedback">{formErrors.interest}</div>}
                 </div>
                 <div className="form-floating mb-3">
-                  <textarea className={`form-control ${formErrors.skills ? 'is-invalid' : ''}`} id="skills" name="skills" placeholder="What are your key skills and qualifications?" style={{height: '100px'}} value={formData.skills} onChange={handleInputChange} required></textarea>
+                  <textarea className={`form-control ${formErrors.skills ? 'is-invalid' : ''}`} id="skills" name="skills" placeholder="What are your key skills and qualifications?" style={{ height: '100px' }} value={formData.skills} onChange={handleInputChange} required></textarea>
                   <label htmlFor="skills">What are your key skills and qualifications?</label>
                   {formErrors.skills && <div className="invalid-feedback">{formErrors.skills}</div>}
                 </div>
                 <div className="form-floating mb-3">
-                  <textarea className={`form-control ${formErrors.challenge ? 'is-invalid' : ''}`} id="challenge" name="challenge" placeholder="Describe a challenging project you have worked on" style={{height: '100px'}} value={formData.challenge} onChange={handleInputChange} required></textarea>
+                  <textarea className={`form-control ${formErrors.challenge ? 'is-invalid' : ''}`} id="challenge" name="challenge" placeholder="Describe a challenging project you have worked on" style={{ height: '100px' }} value={formData.challenge} onChange={handleInputChange} required></textarea>
                   <label htmlFor="challenge">Describe a challenging project you have worked on</label>
                   {formErrors.challenge && <div className="invalid-feedback">{formErrors.challenge}</div>}
                 </div>
@@ -333,7 +394,7 @@ const VideoRecorder = () => {
                 <div className="text-center">
                   <button type="submit" className="btn btn-success">Submit Application</button>
                 </div>
-                </form>
+              </form>
             </div>
           </div>
         </div>
