@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CameraVideoFill } from 'react-bootstrap-icons';
 import { BriefcaseFill } from 'react-bootstrap-icons';
 import '../App.css';
+import logo from '../assests/onepgr-logo.webp';
+
 
 const VideoRecorder = () => {
   const [mediaRecorder, setMediaRecorder] = useState(null);
@@ -207,199 +209,212 @@ const VideoRecorder = () => {
   };
 
   return (
-    <div className="container-fluid bg-light py-5">
-      <div className="row justify-content-center">
-        <div className="col-lg-8">
-          <div className="card shadow-lg border-0 rounded-lg">
-            <div className="card-body p-5">
-              <form onSubmit={handleSubmit}>
-                <div className="p-4">
-                  <div className="d-flex align-items-center">
-                    <BriefcaseFill size={40} className="me-3 text-primary" />
-                    <div>
-                      <h2 className="mb-0">Job Application</h2>
-                      <p className="mb-0">
-                        Please complete the form below to apply for a position with us.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-4">
+    <>
+      <nav className="navbar">
+        <div className="navbar-brand">
+          <img src={logo} alt="Document Icon" className="navbar-icon" />
+          <span className="navbar-logo-text"> </span>
+        </div>
+      </nav>
 
-                  <p className="text-muted mb-2">
-                    <strong>Please enter the URL of the job requisition you're applying for. Your responses below will be associated with this job posting.</strong>
-                  </p>
-                  <div className="form-floating">
-                    <input
-                      className={`form-control ${formErrors.jobReqUrl ? 'is-invalid' : ''}`}
-                      id="jobReqUrl"
-                      name="jobReqUrl"
-                      type="url"
-                      placeholder="https://example.com/job-requisition"
-                      value={formData.jobReqUrl}
-                      onChange={handleInputChange}
-                      required
-                    />
-                    <label htmlFor="jobReqUrl">Enter Job Requisition URL</label>
-                    {formErrors.jobReqUrl && <div className="invalid-feedback">{formErrors.jobReqUrl}</div>}
+      <div className="container-fluid bg-light py-5">
+        <div className="row justify-content-center">
+          <div className="col-lg-8">
+            <div className="card shadow-lg border-0 rounded-lg">
+              <div className="card-body p-5">
+                <form onSubmit={handleSubmit}>
+                  <div className="p-4">
+                    <div className="d-flex align-items-center">
+                    <div className="col-auto">
+                      <BriefcaseFill size={40} className="me-3" style={{ color: '#1F4F8F' }} />
+                    </div>
+                      <div>
+                        <h2 className="mb-0">Job Application</h2>
+                        <p className="mb-0">
+                          Please complete the form below to apply for a position with us.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+
+
+                    <div className="form-floating">
+                      <input
+                        className={`form-control ${formErrors.jobReqUrl ? 'is-invalid' : ''}`}
+                        id="jobReqUrl"
+                        name="jobReqUrl"
+                        type="url"
+                        placeholder="https://example.com/job-requisition"
+                        value={formData.jobReqUrl}
+                        onChange={handleInputChange}
+                        required
+                      />
+                      <label htmlFor="jobReqUrl">Enter Job Requisition URL</label>
+                      {formErrors.jobReqUrl && <div className="invalid-feedback">{formErrors.jobReqUrl}</div>}
+                    </div>
+                    <p className="text-muted mb-2" style={{ marginLeft: '10px' }}>
+                      Please enter the URL of the job requisition you're applying for. Your responses below will be associated with this job posting.
+                    </p>
+
+                  </div>
+                  <div className="row mb-3">
+                    <div className="col-md-6">
+                      <div className="form-floating mb-3 mb-md-0">
+                        <input className={`form-control ${formErrors.fullName ? 'is-invalid' : ''}`} id="fullName" name="fullName" type="text" placeholder="Enter your full name" value={formData.fullName} onChange={handleInputChange} required />
+                        <label htmlFor="fullName">Full name</label>
+                        {formErrors.fullName && <div className="invalid-feedback">{formErrors.fullName}</div>}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input className={`form-control ${formErrors.email ? 'is-invalid' : ''}`} id="email" name="email" type="email" placeholder="name@example.com" value={formData.email} onChange={handleInputChange} required />
+                        <label htmlFor="email">Email address</label>
+                        {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mb-3">
+                    <div className="col-md-6">
+                      <div className="form-floating mb-3 mb-md-0">
+                        <input className={`form-control ${formErrors.phone ? 'is-invalid' : ''}`} id="phone" name="phone" type="tel" placeholder="Enter your phone number" value={formData.phone} onChange={handleInputChange} required />
+                        <label htmlFor="phone">Phone number</label>
+                        {formErrors.phone && <div className="invalid-feedback">{formErrors.phone}</div>}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input className={`form-control ${formErrors.jobTitle ? 'is-invalid' : ''}`} id="jobTitle" name="jobTitle" type="text" placeholder="Enter your current job title" value={formData.jobTitle} onChange={handleInputChange} required />
+                        <label htmlFor="jobTitle">Current Job Title</label>
+                        {formErrors.jobTitle && <div className="invalid-feedback">{formErrors.jobTitle}</div>}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row mb-3">
+                    <div className="col-md-6">
+                      <div className="form-floating mb-3 mb-md-0">
+                        <input className={`form-control ${formErrors.company ? 'is-invalid' : ''}`} id="company" name="company" type="text" placeholder="Enter your current company" value={formData.company} onChange={handleInputChange} required />
+                        <label htmlFor="company">Current Company</label>
+                        {formErrors.company && <div className="invalid-feedback">{formErrors.company}</div>}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <input className={`form-control ${formErrors.location ? 'is-invalid' : ''}`} id="location" name="location" type="text" placeholder="Enter your location" value={formData.location} onChange={handleInputChange} required />
+                        <label htmlFor="location">Location</label>
+                        {formErrors.location && <div className="invalid-feedback">{formErrors.location}</div>}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form-floating mb-3">
+                    <input className={`form-control ${formErrors.linkedinUrl ? 'is-invalid' : ''}`} id="linkedinUrl" name="linkedinUrl" type="url" placeholder="Enter your LinkedIn profile URL" value={formData.linkedinUrl} onChange={handleInputChange} required />
+                    <label htmlFor="linkedinUrl">LinkedIn Profile URL</label>
+                    {formErrors.linkedinUrl && <div className="invalid-feedback">{formErrors.linkedinUrl}</div>}
+                  </div>
+                  <div className="form-floating mb-3">
+                    <input className={`form-control ${formErrors.hearAbout ? 'is-invalid' : ''}`} id="hearAbout" name="hearAbout" type="text" placeholder="How did you hear about this position?" value={formData.hearAbout} onChange={handleInputChange} required />
+                    <label htmlFor="hearAbout">How did you hear about this position?</label>
+                    {formErrors.hearAbout && <div className="invalid-feedback">{formErrors.hearAbout}</div>}
+                  </div>
+                  <div className="form-floating mb-3">
+                    <textarea className={`form-control ${formErrors.interest ? 'is-invalid' : ''}`} id="interest" name="interest" placeholder="Why are you interested in this role?" style={{ height: '100px' }} value={formData.interest} onChange={handleInputChange} required></textarea>
+                    <label htmlFor="interest">Why are you interested in this role?</label>
+                    {formErrors.interest && <div className="invalid-feedback">{formErrors.interest}</div>}
+                  </div>
+                  <div className="form-floating mb-3">
+                    <textarea className={`form-control ${formErrors.skills ? 'is-invalid' : ''}`} id="skills" name="skills" placeholder="What are your key skills and qualifications?" style={{ height: '100px' }} value={formData.skills} onChange={handleInputChange} required></textarea>
+                    <label htmlFor="skills">What are your key skills and qualifications?</label>
+                    {formErrors.skills && <div className="invalid-feedback">{formErrors.skills}</div>}
+                  </div>
+                  <div className="form-floating mb-3">
+                    <textarea className={`form-control ${formErrors.challenge ? 'is-invalid' : ''}`} id="challenge" name="challenge" placeholder="Describe a challenging project you have worked on" style={{ height: '100px' }} value={formData.challenge} onChange={handleInputChange} required></textarea>
+                    <label htmlFor="challenge">Describe a challenging project you have worked on</label>
+                    {formErrors.challenge && <div className="invalid-feedback">{formErrors.challenge}</div>}
+                  </div>
+                  <div className="row mb-3">
+                    <div className="col-md-6">
+                      <div className="form-floating mb-3 mb-md-0">
+                        <input className={`form-control ${formErrors.salary ? 'is-invalid' : ''}`} id="salary" name="salary" type="text" placeholder="Enter your salary expectations" value={formData.salary} onChange={handleInputChange} required />
+                        <label htmlFor="salary">Salary Expectations</label>
+                        {formErrors.salary && <div className="invalid-feedback">{formErrors.salary}</div>}
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-floating">
+                        <select className={`form-select ${formErrors.relocate ? 'is-invalid' : ''}`} id="relocate" name="relocate" value={formData.relocate} onChange={handleInputChange} required>
+                          <option value="">Select an option</option>
+                          <option value="yes">Yes</option>
+                          <option value="no">No</option>
+                        </select>
+                        <label htmlFor="relocate">Are you willing to relocate?</label>
+                        {formErrors.relocate && <div className="invalid-feedback">{formErrors.relocate}</div>}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    {/* Question 1 */}
+                    <div className="card bg-light mb-4">
+                      <div className="card-body">
+                        <p className="lead">Please describe a time when you faced a challenge in your professional life.</p>
+                        <video ref={videoRef1} className="w-100 mb-3" style={{ display: isRecording && currentQuestion === 1 ? 'block' : 'none' }} autoPlay muted></video>
+                        {isRecording && currentQuestion === 1 ? (
+                          <div className="d-flex justify-content-between align-items-center">
+                            <span className="badge bg-danger">{formatTime(elapsedTime)}</span>
+                            <button type="button" className="btn btn-danger" onClick={stopRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>Stop Recording</button>
+                          </div>
+                        ) : (
+                          <div className="text-center">
+                            <button type="button" className="btn btn-primary" onClick={() => startRecording(1)} disabled={isRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>
+                              <CameraVideoFill className="me-2" />
+                              Start Recording
+                            </button>
+                          </div>
+                        )}
+                        {recordingSuccess.question1 && (
+                          <div className="alert alert-success mt-3" role="alert">
+                            Video recorded successfully!
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Question 2 */}
+                    <div className="card bg-light">
+                      <div className="card-body">
+                        <p className="lead">Please record a video of you demoing the product you sell for your current employer.</p>
+                        <video ref={videoRef2} className="w-100 mb-3" style={{ display: isRecording && currentQuestion === 2 ? 'block' : 'none' }} autoPlay muted></video>
+                        {isRecording && currentQuestion === 2 ? (
+                          <div className="d-flex justify-content-between align-items-center">
+                            <span className="badge bg-danger">{formatTime(elapsedTime)}</span>
+                            <button type="button" className="btn btn-danger" onClick={stopRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>Stop Recording</button>
+                          </div>
+                        ) : (
+                          <div className="text-center">
+                            <button type="button" className="btn btn-primary" onClick={() => startRecording(2)} disabled={isRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>
+                              <CameraVideoFill className="me-2" />
+                              Start Recording
+                            </button>
+                          </div>
+                        )}
+                        {recordingSuccess.question2 && (
+                          <div className="alert alert-success mt-3" role="alert">
+                            Video recorded successfully!
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <button type="submit" className="btn btn-success" style={{ backgroundColor: '#2e8b57 ' }}>Submit Application</button>
                   </div>
 
-                </div>
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <div className="form-floating mb-3 mb-md-0">
-                      <input className={`form-control ${formErrors.fullName ? 'is-invalid' : ''}`} id="fullName" name="fullName" type="text" placeholder="Enter your full name" value={formData.fullName} onChange={handleInputChange} required />
-                      <label htmlFor="fullName">Full name</label>
-                      {formErrors.fullName && <div className="invalid-feedback">{formErrors.fullName}</div>}
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-floating">
-                      <input className={`form-control ${formErrors.email ? 'is-invalid' : ''}`} id="email" name="email" type="email" placeholder="name@example.com" value={formData.email} onChange={handleInputChange} required />
-                      <label htmlFor="email">Email address</label>
-                      {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <div className="form-floating mb-3 mb-md-0">
-                      <input className={`form-control ${formErrors.phone ? 'is-invalid' : ''}`} id="phone" name="phone" type="tel" placeholder="Enter your phone number" value={formData.phone} onChange={handleInputChange} required />
-                      <label htmlFor="phone">Phone number</label>
-                      {formErrors.phone && <div className="invalid-feedback">{formErrors.phone}</div>}
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-floating">
-                      <input className={`form-control ${formErrors.jobTitle ? 'is-invalid' : ''}`} id="jobTitle" name="jobTitle" type="text" placeholder="Enter your current job title" value={formData.jobTitle} onChange={handleInputChange} required />
-                      <label htmlFor="jobTitle">Current Job Title</label>
-                      {formErrors.jobTitle && <div className="invalid-feedback">{formErrors.jobTitle}</div>}
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <div className="form-floating mb-3 mb-md-0">
-                      <input className={`form-control ${formErrors.company ? 'is-invalid' : ''}`} id="company" name="company" type="text" placeholder="Enter your current company" value={formData.company} onChange={handleInputChange} required />
-                      <label htmlFor="company">Current Company</label>
-                      {formErrors.company && <div className="invalid-feedback">{formErrors.company}</div>}
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-floating">
-                      <input className={`form-control ${formErrors.location ? 'is-invalid' : ''}`} id="location" name="location" type="text" placeholder="Enter your location" value={formData.location} onChange={handleInputChange} required />
-                      <label htmlFor="location">Location</label>
-                      {formErrors.location && <div className="invalid-feedback">{formErrors.location}</div>}
-                    </div>
-                  </div>
-                </div>
-                <div className="form-floating mb-3">
-                  <input className={`form-control ${formErrors.linkedinUrl ? 'is-invalid' : ''}`} id="linkedinUrl" name="linkedinUrl" type="url" placeholder="Enter your LinkedIn profile URL" value={formData.linkedinUrl} onChange={handleInputChange} required />
-                  <label htmlFor="linkedinUrl">LinkedIn Profile URL</label>
-                  {formErrors.linkedinUrl && <div className="invalid-feedback">{formErrors.linkedinUrl}</div>}
-                </div>
-                <div className="form-floating mb-3">
-                  <input className={`form-control ${formErrors.hearAbout ? 'is-invalid' : ''}`} id="hearAbout" name="hearAbout" type="text" placeholder="How did you hear about this position?" value={formData.hearAbout} onChange={handleInputChange} required />
-                  <label htmlFor="hearAbout">How did you hear about this position?</label>
-                  {formErrors.hearAbout && <div className="invalid-feedback">{formErrors.hearAbout}</div>}
-                </div>
-                <div className="form-floating mb-3">
-                  <textarea className={`form-control ${formErrors.interest ? 'is-invalid' : ''}`} id="interest" name="interest" placeholder="Why are you interested in this role?" style={{ height: '100px' }} value={formData.interest} onChange={handleInputChange} required></textarea>
-                  <label htmlFor="interest">Why are you interested in this role?</label>
-                  {formErrors.interest && <div className="invalid-feedback">{formErrors.interest}</div>}
-                </div>
-                <div className="form-floating mb-3">
-                  <textarea className={`form-control ${formErrors.skills ? 'is-invalid' : ''}`} id="skills" name="skills" placeholder="What are your key skills and qualifications?" style={{ height: '100px' }} value={formData.skills} onChange={handleInputChange} required></textarea>
-                  <label htmlFor="skills">What are your key skills and qualifications?</label>
-                  {formErrors.skills && <div className="invalid-feedback">{formErrors.skills}</div>}
-                </div>
-                <div className="form-floating mb-3">
-                  <textarea className={`form-control ${formErrors.challenge ? 'is-invalid' : ''}`} id="challenge" name="challenge" placeholder="Describe a challenging project you have worked on" style={{ height: '100px' }} value={formData.challenge} onChange={handleInputChange} required></textarea>
-                  <label htmlFor="challenge">Describe a challenging project you have worked on</label>
-                  {formErrors.challenge && <div className="invalid-feedback">{formErrors.challenge}</div>}
-                </div>
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <div className="form-floating mb-3 mb-md-0">
-                      <input className={`form-control ${formErrors.salary ? 'is-invalid' : ''}`} id="salary" name="salary" type="text" placeholder="Enter your salary expectations" value={formData.salary} onChange={handleInputChange} required />
-                      <label htmlFor="salary">Salary Expectations</label>
-                      {formErrors.salary && <div className="invalid-feedback">{formErrors.salary}</div>}
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-floating">
-                      <select className={`form-select ${formErrors.relocate ? 'is-invalid' : ''}`} id="relocate" name="relocate" value={formData.relocate} onChange={handleInputChange} required>
-                        <option value="">Select an option</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                      </select>
-                      <label htmlFor="relocate">Are you willing to relocate?</label>
-                      {formErrors.relocate && <div className="invalid-feedback">{formErrors.relocate}</div>}
-                    </div>
-                  </div>
-                </div>
-                <div className="mb-4">
-                  {/* Question 1 */}
-                  <div className="card bg-light mb-4">
-                    <div className="card-body">
-                      <p className="lead">Please describe a time when you faced a challenge in your professional life.</p>
-                      <video ref={videoRef1} className="w-100 mb-3" style={{ display: isRecording && currentQuestion === 1 ? 'block' : 'none' }} autoPlay muted></video>
-                      {isRecording && currentQuestion === 1 ? (
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span className="badge bg-danger">{formatTime(elapsedTime)}</span>
-                          <button type="button" className="btn btn-danger" onClick={stopRecording}>Stop Recording</button>
-                        </div>
-                      ) : (
-                        <div className="text-center">
-                          <button type="button" className="btn btn-primary" onClick={() => startRecording(1)} disabled={isRecording}>
-                            <CameraVideoFill className="me-2" />
-                            Start Recording
-                          </button>
-                        </div>
-                      )}
-                      {recordingSuccess.question1 && (
-                        <div className="alert alert-success mt-3" role="alert">
-                          Video recorded successfully!
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Question 2 */}
-                  <div className="card bg-light">
-                    <div className="card-body">
-                      <p className="lead">Please record a video of you demoing the product you sell for your current employer.</p>
-                      <video ref={videoRef2} className="w-100 mb-3" style={{ display: isRecording && currentQuestion === 2 ? 'block' : 'none' }} autoPlay muted></video>
-                      {isRecording && currentQuestion === 2 ? (
-                        <div className="d-flex justify-content-between align-items-center">
-                          <span className="badge bg-danger">{formatTime(elapsedTime)}</span>
-                          <button type="button" className="btn btn-danger" onClick={stopRecording}>Stop Recording</button>
-                        </div>
-                      ) : (
-                        <div className="text-center">
-                          <button type="button" className="btn btn-primary" onClick={() => startRecording(2)} disabled={isRecording}>
-                            <CameraVideoFill className="me-2" />
-                            Start Recording
-                          </button>
-                        </div>
-                      )}
-                      {recordingSuccess.question2 && (
-                        <div className="alert alert-success mt-3" role="alert">
-                          Video recorded successfully!
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <button type="submit" className="btn btn-success">Submit Application</button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default VideoRecorder;

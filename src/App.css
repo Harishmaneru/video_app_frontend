@@ -159,3 +159,29 @@ input.error, select.error, textarea.error {
 .icon {
   margin-right: 0.5rem;
 } */
+
+.navbar {
+  background-color: #1F4F8F;
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-icon {
+  height: 40px;
+  margin-right: 20px;
+}
+
+
+.navbar-logo-text {
+  color:#1F4F8F;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.col-auto{
+  margin-left: -20px;
+}
