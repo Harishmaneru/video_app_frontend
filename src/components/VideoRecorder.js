@@ -174,7 +174,7 @@ const VideoRecorder = () => {
       submitFormData.append('video2', recordedVideos.question2, 'video2.webm');
 
 
-      fetch('http://localhost::3000/upload', {
+      fetch('https://videoresponse.onepgr.com:3000/upload', {
         method: 'POST',
         body: submitFormData,
       })
