@@ -185,3 +185,28 @@ input.error, select.error, textarea.error {
 .col-auto{
   margin-left: -20px;
 }
+
+ 
+.btn-hover-effect {
+  background-color: #2e8b57 !important;
+  margin-top: 20px !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.btn-hover-effect:hover {
+  background-color:  #267347  !important;
+}
+.form-control:hover, .form-select:hover {
+  border: 2px solid #1F4F8F !important;
+}
+
+.btn-hover {
+  background-color: #1F4F8F !important;
+  border-color: #1F4F8F !important;
+  transition: background-color 0.3s, border-color 0.3s !important;
+}
+
+.btn-hover:hover {
+  background-color: #1a4378 !important;
+  border-color: #1a4378 !important;
+}

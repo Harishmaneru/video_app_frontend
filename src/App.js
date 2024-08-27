@@ -1,12 +1,15 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import VideoRecorder from './components/VideoRecorder';
 
 const App = () => {
   return (
-    <div>
-      <VideoRecorder />
-    
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/application" element={<VideoRecorder />} />
+        <Route path="/*" element={<VideoRecorder />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

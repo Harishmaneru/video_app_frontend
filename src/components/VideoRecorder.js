@@ -6,6 +6,7 @@ import '../App.css';
 import logo from '../assests/onepgr-logo.webp';
 
 
+
 const VideoRecorder = () => {
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const [recordedVideos, setRecordedVideos] = useState({
@@ -19,6 +20,21 @@ const VideoRecorder = () => {
     question1: false,
     question2: false
   });
+  
+  useEffect(() => {
+    const fullUrl = window.location.href;
+    const splitUrl = fullUrl.split('?');
+    if (splitUrl.length > 1) {
+      const jobUrl = splitUrl[1];
+      if (jobUrl) {
+        setFormData(prevData => ({
+          ...prevData,
+          jobReqUrl: decodeURIComponent(jobUrl)
+        }));
+      }
+    }
+  }, []);
+
 
   const videoRef1 = useRef(null);
   const videoRef2 = useRef(null);
@@ -38,6 +54,7 @@ const VideoRecorder = () => {
     challenge: '',
     salary: '',
     relocate: '',
+    jobReqUrl: '',
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -157,7 +174,7 @@ const VideoRecorder = () => {
       submitFormData.append('video2', recordedVideos.question2, 'video2.webm');
 
 
-      fetch('https://videoresponse.onepgr.com:3000/upload', {
+      fetch('http://localhost::3000/upload', {
         method: 'POST',
         body: submitFormData,
       })
@@ -225,11 +242,11 @@ const VideoRecorder = () => {
                 <form onSubmit={handleSubmit}>
                   <div className="p-4">
                     <div className="d-flex align-items-center">
-                    <div className="col-auto">
-                      <BriefcaseFill size={40} className="me-3" style={{ color: '#1F4F8F' }} />
-                    </div>
+                      <div className="col-auto">
+                        <BriefcaseFill size={45} className="me-3" style={{ color: '#1F4F8F' }} />
+                      </div>
                       <div>
-                        <h2 className="mb-0">Job Application</h2>
+                        <h3 className="mb-0">Job Application</h3>
                         <p className="mb-0">
                           Please complete the form below to apply for a position with us.
                         </p>
@@ -360,11 +377,30 @@ const VideoRecorder = () => {
                         {isRecording && currentQuestion === 1 ? (
                           <div className="d-flex justify-content-between align-items-center">
                             <span className="badge bg-danger">{formatTime(elapsedTime)}</span>
-                            <button type="button" className="btn btn-danger" onClick={stopRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>Stop Recording</button>
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              onClick={stopRecording}
+                              style={{
+                                backgroundColor: '#1F4F8F',
+                                borderColor: '#1F4F8F',
+                                transition: 'background-color 0.3s, border-color 0.3s'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = '#163a6b';
+                                e.target.style.borderColor = '#163a6b';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = '#1F4F8F';
+                                e.target.style.borderColor = '#1F4F8F';
+                              }}
+                            >
+                              Stop Recording
+                            </button>
                           </div>
                         ) : (
                           <div className="text-center">
-                            <button type="button" className="btn btn-primary" onClick={() => startRecording(1)} disabled={isRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>
+                            <button type="button" className="btn btn-primary btn-hover" onClick={() => startRecording(1)} disabled={isRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>
                               <CameraVideoFill className="me-2" />
                               Start Recording
                             </button>
@@ -386,11 +422,11 @@ const VideoRecorder = () => {
                         {isRecording && currentQuestion === 2 ? (
                           <div className="d-flex justify-content-between align-items-center">
                             <span className="badge bg-danger">{formatTime(elapsedTime)}</span>
-                            <button type="button" className="btn btn-danger" onClick={stopRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>Stop Recording</button>
+                            <button type="button" className="btn btn-danger btn-hover" onClick={stopRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>Stop Recording</button>
                           </div>
                         ) : (
                           <div className="text-center">
-                            <button type="button" className="btn btn-primary" onClick={() => startRecording(2)} disabled={isRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>
+                            <button type="button" className="btn btn-primary btn-hover" onClick={() => startRecording(2)} disabled={isRecording} style={{ backgroundColor: '#1F4F8F', borderColor: '#1F4F8F' }}>
                               <CameraVideoFill className="me-2" />
                               Start Recording
                             </button>
@@ -404,10 +440,9 @@ const VideoRecorder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <button type="submit" className="btn btn-success" style={{ backgroundColor: '#2e8b57 ' }}>Submit Application</button>
+                  <div className="text-end">
+                    <button type="submit" className="btn btn-success btn-hover-effect" style={{ backgroundColor: '#2e8b57 ', marginTop: '20px' }}>Submit Application</button>
                   </div>
-
                 </form>
               </div>
             </div>
